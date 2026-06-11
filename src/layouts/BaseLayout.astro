@@ -18,7 +18,7 @@ interface Props {
 
 const { title, description, ogImage = '/og.jpg' } = Astro.props;
 // Astro.url + Astro.site give canonical URLs once `site` is set in astro.config (Day 2 deploy).
-const ogImageUrl = new URL(ogImage, Astro.url.origin).href;
+const ogImageUrl = new URL(ogImage, Astro.site ?? Astro.url.origin).href;
 ---
 
 <!doctype html>
@@ -26,6 +26,7 @@ const ogImageUrl = new URL(ogImage, Astro.url.origin).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />

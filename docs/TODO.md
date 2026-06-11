@@ -23,7 +23,7 @@ Claude: work top-to-bottom, check off (`[x]`) what's done, don't jump ahead.
 - [ ] About page (placeholder story OK)
 - [ ] FAQ section (details/summary accordion)
 - [ ] Replace placeholders with real photos & texts (from CONTENT.md)
-- [ ] OG image + favicon (pink "H" or chevron-style mark)
+- [ ] OG image + favicon (pink "H" or chevron-style mark) — favicon done, og.jpg still needs a real photo
 - [ ] Lighthouse pass: performance, a11y, SEO ≥ 90
 - [ ] Deploy to Vercel/Netlify + share preview link 🎁
       (must set `site:` in astro.config.mjs — og:image currently resolves to
