@@ -1,0 +1,44 @@
+---
+import { whatsappLink } from '../data/site';
+
+const orderLink = whatsappLink("Hi! I'd like to place an order.");
+---
+
+<section class="section cta-banner">
+  <div class="container cta-inner">
+    <h2>Craving some?</h2>
+    <p>Send me a message and I'll get your order ready.</p>
+    <div class="cta-actions">
+      <a class="btn" href={orderLink}>Order via WhatsApp</a>
+      <a class="btn btn-secondary cta-contact" href="/contact">Contact me</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-banner {
+    background: var(--color-soft);
+  }
+
+  .cta-inner {
+    text-align: center;
+  }
+
+  .cta-inner p {
+    margin-top: var(--space-3);
+    color: var(--color-text);
+  }
+
+  .cta-actions {
+    margin-top: var(--space-5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  /* secondary button sits on soft pink here — use surface for contrast */
+  .cta-contact {
+    background: var(--color-surface);
+  }
+</style>

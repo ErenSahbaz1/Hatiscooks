@@ -1,0 +1,53 @@
+---
+import { site } from '../data/site';
+
+// [PLACEHOLDER: 4 recent food photos exported from her Instagram, 1:1]
+const photoCount = 4;
+---
+
+<section class="section">
+  <div class="container">
+    <span class="kicker">Instagram</span>
+    <h2>Fresh from <a class="ig-handle" href={site.instagram} rel="noopener">@{site.name}</a></h2>
+    <ul class="ig-grid">
+      {Array.from({ length: photoCount }).map(() => (
+        <li>
+          <a href={site.instagram} rel="noopener" aria-label={`See more on Instagram, @${site.name}`}>
+            <div class="ig-photo img-placeholder" aria-hidden="true"></div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .ig-handle {
+    color: var(--color-primary-dark);
+  }
+
+  .ig-grid {
+    list-style: none;
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+
+  .ig-photo {
+    aspect-ratio: 1 / 1;
+    transition: transform 200ms ease-out;
+  }
+
+  .ig-grid a:hover .ig-photo {
+    transform: scale(1.02);
+  }
+
+  @media (min-width: 768px) {
+    .ig-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-4);
+    }
+  }
+</style>

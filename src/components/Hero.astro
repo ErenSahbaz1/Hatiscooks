@@ -1,0 +1,74 @@
+---
+import { site, whatsappLink } from '../data/site';
+
+const orderLink = whatsappLink("Hi! I'd like to place an order.");
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <h1>{site.tagline.replace(', made with love', '')}<span class="hero-heart">, made with love</span></h1>
+      <p class="hero-sub">
+        Small-batch gingershots and crunchy granola, homemade in {site.region}.
+        Order via WhatsApp, pick up or get it delivered.
+      </p>
+      <div class="hero-actions">
+        <a class="btn" href="/#products">View products</a>
+        <a class="btn btn-secondary" href={orderLink}>Order via WhatsApp</a>
+      </div>
+    </div>
+    <!-- [PLACEHOLDER: hero food photo, 4:5] — soft-pink block until a real photo arrives -->
+    <div class="hero-media img-placeholder" role="img" aria-label="Photo of homemade gingershots and granola coming soon"></div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--space-7) var(--space-8);
+  }
+
+  .hero-inner {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .hero-heart {
+    color: var(--color-primary);
+  }
+
+  .hero-sub {
+    margin-top: var(--space-4);
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    max-width: 32rem;
+  }
+
+  .hero-actions {
+    margin-top: var(--space-5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .hero-media {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      padding-block: var(--space-8) var(--space-9);
+    }
+
+    .hero-inner {
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .hero-media {
+      justify-self: end;
+    }
+  }
+</style>

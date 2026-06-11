@@ -1,0 +1,93 @@
+---
+import type { Product } from '../data/products';
+import { formatPrice } from '../data/products';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const fromPrice = Math.min(...product.sizes.map((s) => s.price));
+---
+
+<a class="card" href={`/products/${product.slug}`}>
+  {
+    product.images.length > 0 ? (
+      <img
+        class="card-img"
+        src={product.images[0]}
+        alt={product.name}
+        width="400"
+        height="500"
+        loading="lazy"
+      />
+    ) : (
+      <div class="card-img img-placeholder" aria-hidden="true"></div>
+    )
+  }
+  <div class="card-body">
+    <h3>{product.name}</h3>
+    <p class="card-desc">{product.shortDescription}</p>
+    <p class="card-price">
+      from <strong>{formatPrice(fromPrice)}</strong>
+      <span class="card-arrow" aria-hidden="true">→</span>
+    </p>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: block;
+    background: var(--color-surface);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    color: var(--color-text);
+    transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+  }
+
+  .card:hover {
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft-lg);
+  }
+
+  .card-img {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0;
+  }
+
+  .card-body {
+    padding: var(--space-5);
+  }
+
+  .card-desc {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .card-price {
+    margin-top: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .card-price strong {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+  }
+
+  .card-arrow {
+    margin-left: auto;
+    color: var(--color-primary-dark);
+    transition: transform 200ms ease-out;
+  }
+
+  .card:hover .card-arrow {
+    transform: translateX(4px);
+  }
+</style>

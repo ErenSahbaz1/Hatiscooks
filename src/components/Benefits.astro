@@ -1,0 +1,74 @@
+---
+const benefits = [
+  {
+    title: 'Small batches',
+    text: 'Everything is homemade in small batches, never mass-produced.',
+    icon: 'M12 3v3m0 12v3m9-9h-3M6 12H3m13.5-6.5L15 7m-6 6-1.5 1.5M16.5 16.5 15 15M9 9 7.5 7.5',
+  },
+  {
+    title: 'Fresh ingredients',
+    text: 'Made fresh to order with ingredients I pick myself.',
+    icon: 'M5 21c0-7 4-12 14-16-1 10-6 14-14 16Zm0 0c2-4 5-7 9-9',
+  },
+  {
+    title: 'Local pickup & delivery',
+    text: 'Pick up your order or get it delivered nearby in Belgium.',
+    icon: 'M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Zm0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z',
+  },
+];
+---
+
+<section class="section benefits">
+  <div class="container">
+    <ul class="benefit-list">
+      {benefits.map((b) => (
+        <li class="benefit">
+          <span class="benefit-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d={b.icon}></path>
+            </svg>
+          </span>
+          <h3>{b.title}</h3>
+          <p>{b.text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .benefits {
+    background: var(--color-surface);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .benefit-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .benefit-icon {
+    display: inline-flex;
+    padding: var(--space-3);
+    border-radius: var(--radius-pill);
+    background: var(--color-soft);
+    color: var(--color-primary-dark);
+    margin-bottom: var(--space-3);
+  }
+
+  .benefit p {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  @media (min-width: 768px) {
+    .benefit-list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-7);
+    }
+  }
+</style>
