@@ -55,5 +55,4 @@ Accordion (native `<details>/<summary>`, styled — zero JS).
 ## SEO per page
 - Home: "Hatiscooks — Homemade gingershots & granola in [CITY]"
 - Product: "[Product] — Hatiscooks"
--
- OG image: best food photo, 1200×630, in `public/og.jpg`
+- OG image: best food photo, 1200×630, in `public/og.jpg`
