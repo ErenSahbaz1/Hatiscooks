@@ -1,0 +1,153 @@
+---
+// Astro component scripts (this fence) run only at build time — zero JS ships unless you add a <script> tag.
+import { site } from '../data/site';
+
+const navLinks = [
+  { href: '/#products', label: 'Products' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/">{site.name}</a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      aria-label="Open menu"
+    >
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav">
+      <ul>
+        {navLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+        <li>
+          <a class="btn nav-cta" href="/contact">Order</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- A plain <script> in Astro is bundled and shipped as a tiny module — the only JS on the site (no framework island needed). -->
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.querySelector<HTMLElement>('.site-nav');
+
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('is-open') ?? false;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+</script>
+
+<!-- <style> in .astro files is scoped to this component automatically (like CSS Modules). -->
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 64px;
+  }
+
+  .logo {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--color-text);
+  }
+
+  .logo:hover {
+    text-decoration: none;
+    color: var(--color-primary-dark);
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--space-3);
+    background: none;
+    border: none;
+  }
+
+  .bar {
+    width: 22px;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 2px;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .site-nav.is-open {
+    display: block;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4) 20px var(--space-5);
+  }
+
+  .site-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .site-nav a:not(.btn) {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .site-nav a:not(.btn):hover {
+    color: var(--color-primary-dark);
+    text-decoration: none;
+  }
+
+  @media (min-width: 768px) {
+    .menu-toggle {
+      display: none;
+    }
+
+    .site-nav,
+    .site-nav.is-open {
+      display: block;
+      position: static;
+      border: none;
+      padding: 0;
+      background: none;
+    }
+
+    .site-nav ul {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-6);
+    }
+  }
+</style>
