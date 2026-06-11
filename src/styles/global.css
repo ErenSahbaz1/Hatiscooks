@@ -1,0 +1,188 @@
+/* ============ Design tokens (source: docs/DESIGN.md) ============ */
+:root {
+  /* Brand */
+  --color-primary: #fc64bb;
+  --color-primary-dark: #d84a9e;
+  --color-soft: #ffd8f5;
+  --color-pop: #ff3131;
+  /* Neutrals */
+  --color-bg: #fffaf7;
+  --color-surface: #ffffff;
+  --color-text: #2d1b25;
+  --color-text-muted: #7a6470;
+  --color-border: #f3e2ec;
+
+  /* Type */
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing scale: 4/8/12/16/24/32/48/64/96 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* Radius */
+  --radius-card: 12px;
+  --radius-pill: 999px;
+  --radius-img: 16px;
+
+  /* Shadow — warm, never harsh black */
+  --shadow-soft: 0 8px 24px rgba(252, 100, 187, 0.12);
+  --shadow-soft-lg: 0 12px 32px rgba(252, 100, 187, 0.18);
+}
+
+/* ============ Reset ============ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ============ Base typography (mobile-first) ============ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+
+@media (min-width: 768px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.3rem; }
+}
+
+a {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* ============ Utilities ============ */
+.container {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.section {
+  padding-block: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .container { padding-inline: 40px; }
+  .section { padding-block: var(--space-9); }
+}
+
+/* Section header pattern: pink uppercase kicker + big heading */
+.kicker {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-2);
+}
+
+/* ============ Buttons ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-primary);
+  background: var(--color-primary);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out,
+    background-color 200ms ease-out;
+}
+
+.btn:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary-dark);
+}
+
+.btn-secondary:hover {
+  background: var(--color-soft);
+  color: var(--color-text);
+}
+
+/* Soft-pink placeholder block standing in for a real photo */
+.img-placeholder {
+  background: var(--color-soft);
+  border-radius: var(--radius-img);
+}
