@@ -154,7 +154,7 @@ a:hover {
   border-radius: var(--radius-pill);
   border: 2px solid var(--color-primary);
   background: var(--color-primary);
-  color: #ffffff;
+  color: var(--color-surface);
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 1rem;
@@ -171,6 +171,7 @@ a:hover {
   text-decoration: none;
 }
 
+/* Modifier: must be used together with .btn; relies on appearing later in the cascade. */
 .btn-secondary {
   background: transparent;
   color: var(--color-primary-dark);
