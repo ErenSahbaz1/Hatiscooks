@@ -9,6 +9,9 @@ const photoCount = 4;
   <div class="container">
     <span class="kicker">Instagram</span>
     <h2>Fresh from <a class="ig-handle" href={site.instagram} rel="noopener">@{site.name}</a></h2>
+  </div>
+  <!-- photo strip breaks out of the main column for a full-bleed feel -->
+  <div class="container container--wide">
     <ul class="ig-grid">
       {Array.from({ length: photoCount }).map(() => (
         <li>

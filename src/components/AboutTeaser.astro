@@ -4,7 +4,9 @@
 <section class="section">
   <div class="container teaser-inner">
     <!-- [PLACEHOLDER: portrait photo of Hati in the kitchen, 3:4] -->
-    <div class="teaser-media img-placeholder" role="img" aria-label="Portrait of Hati coming soon"></div>
+    <div class="teaser-wrap blob-wrap">
+      <div class="teaser-media img-placeholder" role="img" aria-label="Portrait of Hati coming soon"></div>
+    </div>
     <div class="teaser-copy">
       <span class="kicker">About</span>
       <h2>Hi, I'm Hati <span aria-hidden="true">👋</span></h2>
@@ -23,15 +25,25 @@
     gap: var(--space-6);
   }
 
-  .teaser-media {
-    aspect-ratio: 3 / 4;
+  .teaser-wrap {
     width: 100%;
     max-width: 360px;
+  }
+
+  /* blob leans the other way than the hero's for variety */
+  .teaser-wrap::before {
+    transform: rotate(8deg);
+  }
+
+  .teaser-media {
+    aspect-ratio: 3 / 4;
+    transform: rotate(-2deg);
   }
 
   .teaser-copy p {
     margin-top: var(--space-4);
     color: var(--color-text-muted);
+    max-width: 60ch;
   }
 
   .teaser-link {
@@ -46,6 +58,11 @@
       grid-template-columns: 1fr 1.4fr;
       align-items: center;
       gap: var(--space-8);
+    }
+
+    /* asymmetric lift so the row doesn't sit on one straight axis */
+    .teaser-wrap {
+      margin-top: calc(-1 * var(--space-6));
     }
   }
 </style>

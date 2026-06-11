@@ -46,9 +46,11 @@ Rules:
 
 ## Spacing & layout
 - Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 px
-- Max content width: 1100px, side padding 20px mobile / 40px desktop
+- Max content width: 1400px (media-heavy strips may stretch to 1600px),
+  side padding 20px mobile / 32px tablet / 48px desktop (≥1100px)
+- Long-form text capped at ~60ch regardless of container width
 - Section vertical padding: 64px mobile / 96px desktop
-- Border radius: 12px cards, 999px buttons/pills, 16px images
+- Border radius: 12px cards, 999px buttons/pills, 16px images, 24px banners
 
 ## Components
 - **Buttons**: pill shaped, primary = filled pink, secondary = outlined.

@@ -9,8 +9,10 @@ const testimonials = [
 
 <section class="section testimonials">
   <div class="container">
-    <span class="kicker">Kind words</span>
-    <h2>What customers say</h2>
+    <div class="ts-header">
+      <span class="kicker">Kind words</span>
+      <h2>What customers say</h2>
+    </div>
     <ul class="quote-list">
       {testimonials.map((t) => (
         <li class="quote-card">
@@ -50,10 +52,21 @@ const testimonials = [
     font-size: 0.9rem;
   }
 
+  /* centered header breaks the uniform left-rail rhythm of the page */
+  .ts-header {
+    text-align: center;
+  }
+
   @media (min-width: 768px) {
     .quote-list {
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-5);
+      /* room for the staggered middle card */
+      padding-bottom: var(--space-5);
+    }
+
+    .quote-card:nth-child(2) {
+      transform: translateY(var(--space-5));
     }
   }
 </style>

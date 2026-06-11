@@ -18,7 +18,9 @@ const orderLink = whatsappLink("Hi! I'd like to place an order.");
       </div>
     </div>
     <!-- [PLACEHOLDER: hero food photo, 4:5] — soft-pink block until a real photo arrives -->
-    <div class="hero-media img-placeholder" role="img" aria-label="Photo of homemade gingershots and granola coming soon"></div>
+    <div class="hero-media-wrap blob-wrap">
+      <div class="hero-media img-placeholder" role="img" aria-label="Photo of homemade gingershots and granola coming soon"></div>
+    </div>
   </div>
 </section>
 
@@ -50,10 +52,14 @@ const orderLink = whatsappLink("Hi! I'd like to place an order.");
     gap: var(--space-3);
   }
 
-  .hero-media {
-    aspect-ratio: 4 / 5;
+  .hero-media-wrap {
     width: 100%;
     max-width: 420px;
+  }
+
+  .hero-media {
+    aspect-ratio: 4 / 5;
+    transform: rotate(2deg);
   }
 
   @media (min-width: 768px) {
@@ -62,13 +68,14 @@ const orderLink = whatsappLink("Hi! I'd like to place an order.");
     }
 
     .hero-inner {
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: 1.05fr 1fr;
       align-items: center;
       gap: var(--space-8);
     }
 
-    .hero-media {
+    .hero-media-wrap {
       justify-self: end;
+      max-width: 520px;
     }
   }
 </style>

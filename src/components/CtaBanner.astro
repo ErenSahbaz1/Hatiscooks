@@ -4,29 +4,37 @@ import { whatsappLink } from '../data/site';
 const orderLink = whatsappLink("Hi! I'd like to place an order.");
 ---
 
-<section class="section cta-banner">
-  <div class="container cta-inner">
-    <h2>Craving some?</h2>
-    <p>Send me a message and I'll get your order ready.</p>
-    <div class="cta-actions">
-      <a class="btn" href={orderLink}>Order via WhatsApp</a>
-      <a class="btn btn-secondary cta-contact" href="/contact">Contact me</a>
+<section class="section">
+  <div class="container">
+    <!-- rounded card floating in the column, not another full-width band -->
+    <div class="cta-card">
+      <h2>Craving some?</h2>
+      <p>Send me a message and I'll get your order ready.</p>
+      <div class="cta-actions">
+        <a class="btn" href={orderLink}>Order via WhatsApp</a>
+        <a class="btn btn-secondary cta-contact" href="/contact">Contact me</a>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .cta-banner {
+  .cta-card {
     background: var(--color-soft);
-  }
-
-  .cta-inner {
+    border-radius: var(--radius-banner);
+    padding: var(--space-7) var(--space-5);
     text-align: center;
   }
 
-  .cta-inner p {
+  .cta-card p {
     margin-top: var(--space-3);
     color: var(--color-text);
+  }
+
+  @media (min-width: 768px) {
+    .cta-card {
+      padding: var(--space-8);
+    }
   }
 
   .cta-actions {
