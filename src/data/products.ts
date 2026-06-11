@@ -40,7 +40,7 @@ export const products: Product[] = [
     allergens: '[PLACEHOLDER: gingershot allergens]',
     storage: '[PLACEHOLDER: shelf life & storage]',
     vegan: null,
-    images: [],
+    images: ['/shot1.jpg', '/shot2.jpg'],
   },
   {
     id: 'granola',
@@ -54,7 +54,7 @@ export const products: Product[] = [
     allergens: '[PLACEHOLDER: granola allergens — nuts? gluten? must be accurate]',
     storage: '[PLACEHOLDER: granola storage]',
     vegan: true,
-    images: [],
+    images: ['/granola.jpg', '/granola2.jpg', '/granola3.jpg'],
   },
 ];
 

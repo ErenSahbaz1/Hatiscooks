@@ -9,13 +9,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- Section 1: Hero portrait + intro text -->
   <section class="section">
     <div class="container about-intro">
-      <!-- [PLACEHOLDER: portrait photo of Hati in the kitchen, 3:4] -->
       <div class="portrait-wrap blob-wrap">
-        <div
-          class="img-placeholder portrait-img"
-          role="img"
-          aria-label="Portrait of Hati coming soon"
-        ></div>
+        <img
+          class="portrait-img"
+          src="/hatis.jpg"
+          alt="Hati cooking in the kitchen"
+          width="1080"
+          height="1110"
+        />
       </div>
 
       <div class="intro-copy">
@@ -46,24 +47,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="section">
     <div class="container">
       <div class="collage">
-        <!-- [PLACEHOLDER: cooking photo 1 — e.g. gingershots being poured, 1:1] -->
-        <div
-          class="img-placeholder collage-img"
-          role="img"
-          aria-label="Cooking photo coming soon"
-        ></div>
-        <!-- [PLACEHOLDER: cooking photo 2 — e.g. granola in a bowl or baking tray, 1:1] -->
-        <div
-          class="img-placeholder collage-img"
-          role="img"
-          aria-label="Cooking photo coming soon"
-        ></div>
-        <!-- [PLACEHOLDER: cooking photo 3 — e.g. flat-lay of finished products, 1:1] -->
-        <div
-          class="img-placeholder collage-img"
-          role="img"
-          aria-label="Cooking photo coming soon"
-        ></div>
+        <img class="collage-img" src="/meze.jpg" alt="A plated dish by Hati — beet meze on whipped yogurt" width="600" height="600" loading="lazy" />
+        <img class="collage-img" src="/shot1.jpg" alt="A heart-shaped glass filled with fresh gingershot" width="600" height="600" loading="lazy" />
+        <img class="collage-img" src="/granola2.jpg" alt="Homemade chocolate granola" width="600" height="600" loading="lazy" />
       </div>
     </div>
   </section>

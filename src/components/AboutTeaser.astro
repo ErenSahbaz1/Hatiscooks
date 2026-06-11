@@ -3,9 +3,15 @@
 
 <section class="section">
   <div class="container teaser-inner">
-    <!-- [PLACEHOLDER: portrait photo of Hati in the kitchen, 3:4] -->
     <div class="teaser-wrap blob-wrap">
-      <div class="teaser-media img-placeholder" role="img" aria-label="Portrait of Hati coming soon"></div>
+      <img
+        class="teaser-media"
+        src="/hatis.jpg"
+        alt="Hati cooking in the kitchen"
+        width="1080"
+        height="1110"
+        loading="lazy"
+      />
     </div>
     <div class="teaser-copy">
       <span class="kicker">About</span>
@@ -37,6 +43,9 @@
 
   .teaser-media {
     aspect-ratio: 3 / 4;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-img);
     transform: rotate(-2deg);
   }
 

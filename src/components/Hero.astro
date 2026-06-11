@@ -17,9 +17,15 @@ const orderLink = whatsappLink("Hi! I'd like to place an order.");
         <a class="btn btn-secondary" href={orderLink}>Order via WhatsApp</a>
       </div>
     </div>
-    <!-- [PLACEHOLDER: hero food photo, 4:5] — soft-pink block until a real photo arrives -->
     <div class="hero-media-wrap blob-wrap">
-      <div class="hero-media img-placeholder" role="img" aria-label="Photo of homemade gingershots and granola coming soon"></div>
+      <img
+        class="hero-media"
+        src="/shot2.jpg"
+        alt="hatiscooks gingershot bottle and granola bag surrounded by fresh lemons"
+        width="720"
+        height="720"
+        fetchpriority="high"
+      />
     </div>
   </div>
 </section>
@@ -59,6 +65,9 @@ const orderLink = whatsappLink("Hi! I'd like to place an order.");
 
   .hero-media {
     aspect-ratio: 4 / 5;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-img);
     transform: rotate(2deg);
   }
 
