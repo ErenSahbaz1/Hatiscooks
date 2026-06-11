@@ -20,14 +20,13 @@ Claude: work top-to-bottom, check off (`[x]`) what's done, don't jump ahead.
 ## Day 2 — remaining pages + polish (birthday-ready)
 - [ ] Product detail pages via getStaticPaths
 - [ ] Contact page with order steps + WhatsApp/mailto form
-- [ ] About page (placeholder story OK)
-- [ ] FAQ section (details/summary accordion)
+- [x] About page (placeholder story OK)
+- [x] FAQ section (details/summary accordion) — built as /faq page
 - [ ] Replace placeholders with real photos & texts (from CONTENT.md)
 - [ ] OG image + favicon (pink "H" or chevron-style mark) — favicon done, og.jpg still needs a real photo
 - [ ] Lighthouse pass: performance, a11y, SEO ≥ 90
 - [ ] Deploy to Vercel/Netlify + share preview link 🎁
-      (must set `site:` in astro.config.mjs — og:image currently resolves to
-      localhost until this is done)
+      (`site:` is set to hatiscooks.vercel.app — update if the deploy URL differs)
 
 ## Later (after her input)
 - [ ] Real testimonials with permission

@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Q&A data — answers are placeholders until Hati fills them in
+const faqs = [
+  {
+    question: 'How long do gingershots stay fresh?',
+    answer: '[PLACEHOLDER: shelf life answer]',
+  },
+  {
+    question: 'Is the granola vegan / does it contain nuts?',
+    answer:
+      'The chocolate granola is 100% vegan. [PLACEHOLDER: allergen details — nuts/gluten]',
+  },
+  {
+    question: 'Do you deliver? Where?',
+    answer: '[PLACEHOLDER: delivery area answer]',
+  },
+  {
+    question: 'Can I order for events or as a gift?',
+    answer: '[PLACEHOLDER: events/gifts answer]',
+  },
+] as const;
+---
+
+<BaseLayout
+  title="FAQ — hatiscooks"
+  description="Common questions about ordering gingershots and granola from hatiscooks."
+>
+  <section class="section">
+    <div class="container faq-wrap">
+      <span class="kicker">FAQ</span>
+      <h1>Good questions</h1>
+
+      <ul class="accordion" role="list">
+        {
+          faqs.map(({ question, answer }) => (
+            <li>
+              {/* <details>/<summary> — native HTML disclosure widget, zero JS required */}
+              <details class="accordion-item">
+                <summary class="accordion-summary">
+                  <span class="summary-text">{question}</span>
+                  {/* CSS-only chevron: rotates when <details> is open via details[open] selector */}
+                  <span class="chevron" aria-hidden="true">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5 7.5L10 12.5L15 7.5"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </summary>
+                <div class="accordion-body">
+                  <p>{answer}</p>
+                </div>
+              </details>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .faq-wrap h1 {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  /* ---- Accordion list ---- */
+  .accordion {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 720px;
+  }
+
+  /* ---- Card shell ---- */
+  .accordion-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+
+  /* ---- Summary (the clickable trigger) ---- */
+  .accordion-summary {
+    /* Remove browser default marker */
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    /* Minimum 44px touch target (WCAG 2.5.5) */
+    min-height: 44px;
+    padding: var(--space-4) var(--space-5);
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text);
+  }
+
+  /* Safari also uses ::-webkit-details-marker */
+  .accordion-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .accordion-summary:hover {
+    background: var(--color-soft);
+  }
+
+  :focus-visible.accordion-summary {
+    outline-offset: -3px;
+  }
+
+  .summary-text {
+    flex: 1;
+  }
+
+  /* ---- Chevron icon ---- */
+  .chevron {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    color: var(--color-primary-dark);
+    transition: transform 250ms ease-out;
+  }
+
+  /* Rotate chevron 180° when the item is open */
+  details[open] > .accordion-summary .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ---- Answer body ---- */
+  .accordion-body {
+    padding: 0 var(--space-5) var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .accordion-body p {
+    padding-top: var(--space-4);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  @media (min-width: 768px) {
+    .accordion-summary {
+      font-size: 1.05rem;
+      padding: var(--space-5) var(--space-6);
+    }
+
+    .accordion-body {
+      padding: 0 var(--space-6) var(--space-5);
+    }
+  }
+</style>

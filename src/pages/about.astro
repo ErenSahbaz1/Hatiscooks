@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About — hatiscooks"
+  description="The story behind hatiscooks — homemade gingershots & granola from Belgium."
+>
+  <!-- Section 1: Hero portrait + intro text -->
+  <section class="section">
+    <div class="container about-intro">
+      <!-- [PLACEHOLDER: portrait photo of Hati in the kitchen, 3:4] -->
+      <div class="portrait-wrap blob-wrap">
+        <div
+          class="img-placeholder portrait-img"
+          role="img"
+          aria-label="Portrait of Hati coming soon"
+        ></div>
+      </div>
+
+      <div class="intro-copy">
+        <span class="kicker">About</span>
+        <h1>Hi, I'm Hati</h1>
+
+        <p>
+          [PLACEHOLDER: her story — how she started cooking & sharing on Instagram,
+          in her own voice. What sparked her love for homemade food and why she
+          decided to start sharing it with the world.]
+        </p>
+
+        <p>
+          [PLACEHOLDER: why gingershots and granola specifically — the inspiration
+          behind these two products, what makes her recipes special, and what she
+          loves most about making them from scratch.]
+        </p>
+
+        <p>
+          [PLACEHOLDER: a personal touch — one fun detail about her, her kitchen,
+          or her cooking style that shows her personality.]
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Photo collage — cooking / behind-the-scenes -->
+  <section class="section">
+    <div class="container">
+      <div class="collage">
+        <!-- [PLACEHOLDER: cooking photo 1 — e.g. gingershots being poured, 1:1] -->
+        <div
+          class="img-placeholder collage-img"
+          role="img"
+          aria-label="Cooking photo coming soon"
+        ></div>
+        <!-- [PLACEHOLDER: cooking photo 2 — e.g. granola in a bowl or baking tray, 1:1] -->
+        <div
+          class="img-placeholder collage-img"
+          role="img"
+          aria-label="Cooking photo coming soon"
+        ></div>
+        <!-- [PLACEHOLDER: cooking photo 3 — e.g. flat-lay of finished products, 1:1] -->
+        <div
+          class="img-placeholder collage-img"
+          role="img"
+          aria-label="Cooking photo coming soon"
+        ></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: CTA -->
+  <section class="section">
+    <div class="container cta-wrap">
+      <h2>Hungry now?</h2>
+      <a class="btn" href="/#products">View products</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ---- Section 1: intro layout ---- */
+  .about-intro {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .portrait-wrap {
+    width: 100%;
+    max-width: 320px;
+    justify-self: center;
+  }
+
+  /* blob leans opposite to the home hero for visual variety */
+  .portrait-wrap::before {
+    transform: rotate(8deg);
+  }
+
+  .portrait-img {
+    aspect-ratio: 3 / 4;
+    /* slight tilt echoes the AboutTeaser idiom */
+    transform: rotate(-2deg);
+  }
+
+  .intro-copy h1 {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .intro-copy p {
+    color: var(--color-text-muted);
+    max-width: 60ch;
+  }
+
+  .intro-copy p + p {
+    margin-top: var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .about-intro {
+      grid-template-columns: 1fr 1.4fr;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .portrait-wrap {
+      margin-top: calc(-1 * var(--space-6));
+      justify-self: start;
+    }
+  }
+
+  /* ---- Section 2: photo collage ---- */
+  .collage {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .collage-img {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+  }
+
+  @media (min-width: 600px) {
+    .collage {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ---- Section 3: CTA ---- */
+  .cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+    text-align: center;
+  }
+</style>
