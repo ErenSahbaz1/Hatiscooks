@@ -1,10 +1,50 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProductCard from '../components/ProductCard.astro';
+import Benefits from '../components/Benefits.astro';
+import AboutTeaser from '../components/AboutTeaser.astro';
+import Testimonials from '../components/Testimonials.astro';
+import InstagramStrip from '../components/InstagramStrip.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { products } from '../data/products';
 ---
 
 <BaseLayout
   title="hatiscooks — Homemade gingershots & granola"
-  description="Homemade gingershots & granola, made with love. Small-batch, ordered via WhatsApp or Instagram, in Belgium."
+  description="Homemade gingershots & granola, made with love in Belgium. Small batches, ordered via WhatsApp or Instagram DM."
 >
-  <h1 class="container section">hatiscooks — home page coming in Task 6</h1>
+  <Hero />
+
+  <section class="section" id="products">
+    <div class="container">
+      <span class="kicker">Products</span>
+      <h2>Made fresh, in small batches</h2>
+      <div class="product-grid">
+        {products.map((product) => <ProductCard product={product} />)}
+      </div>
+    </div>
+  </section>
+
+  <Benefits />
+  <AboutTeaser />
+  <Testimonials />
+  <InstagramStrip />
+  <CtaBanner />
 </BaseLayout>
+
+<style>
+  .product-grid {
+    margin-top: var(--space-6);
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 600px) {
+    .product-grid {
+      /* two cards today; auto-fit lets the grid absorb future products */
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-6);
+    }
+  }
+</style>
