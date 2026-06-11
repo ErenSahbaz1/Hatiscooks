@@ -206,6 +206,21 @@ a:hover {
   isolation: isolate;
 }
 
+/* Fade-up on scroll — hidden state only applies once JS adds .js-fade,
+   and only for users who haven't asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js-fade main > section {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 350ms ease-out, transform 350ms ease-out;
+  }
+
+  html.js-fade main > section.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .blob-wrap::before {
   content: '';
   position: absolute;
