@@ -18,7 +18,7 @@ Claude: work top-to-bottom, check off (`[x]`) what's done, don't jump ahead.
       human eyeball pass in the browser
 
 ## Day 2 — remaining pages + polish (birthday-ready)
-- [ ] Product detail pages via getStaticPaths
+- [x] Product detail pages via getStaticPaths
 - [ ] Contact page with order steps + WhatsApp/mailto form
 - [x] About page (placeholder story OK)
 - [x] FAQ section (details/summary accordion) — built as /faq page

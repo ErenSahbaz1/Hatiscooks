@@ -1,0 +1,256 @@
+---
+// getStaticPaths is Astro's SSG equivalent of Next.js's getStaticPaths — it tells Astro
+// which dynamic routes to generate at build time. Each returned `params` object
+// becomes one static HTML file (e.g. /products/gingershots/index.html).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products, formatPrice } from '../../data/products';
+import { whatsappLink } from '../../data/site';
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const otherProducts = products.filter((p) => p.slug !== product.slug);
+const waLink = whatsappLink(`Hi! I'd like to order ${product.name}.`);
+---
+
+<BaseLayout title={`${product.name} — hatiscooks`} description={product.shortDescription}>
+  <!-- ===== Hero: image + info ===== -->
+  <section class="section product-hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Left column: main image -->
+        <!-- Thumbnails come here once real photos exist — swap .img-placeholder for <img> elements -->
+        <div class="media-col">
+          <div class="blob-wrap">
+            {product.images.length > 0 ? (
+              <img
+                class="product-img"
+                src={product.images[0]}
+                alt={product.name}
+                width="600"
+                height="750"
+              />
+            ) : (
+              <div class="product-img img-placeholder" aria-label={`${product.name} photo coming soon`}></div>
+            )}
+          </div>
+        </div>
+
+        <!-- Right column: info -->
+        <div class="info-col">
+          <span class="kicker">Product</span>
+          <h1>{product.name}</h1>
+          <p class="product-desc">{product.description}</p>
+
+          <!-- Sizes list -->
+          <ul class="sizes-list" aria-label="Available sizes and prices">
+            {product.sizes.map((size) => (
+              <li class="size-row">
+                <span class="size-label">{size.label}</span>
+                <span class="size-price">{formatPrice(size.price)}</span>
+              </li>
+            ))}
+          </ul>
+
+          <!-- Vegan badge — only rendered when explicitly confirmed true, never for null -->
+          {product.vegan === true && (
+            <span class="vegan-badge">100% vegan</span>
+          )}
+
+          <!-- Order CTAs -->
+          <div class="cta-row">
+            <a href={waLink} class="btn" target="_blank" rel="noopener noreferrer">
+              Order via WhatsApp
+            </a>
+            <a href="/contact" class="btn btn-secondary">
+              Ask a question
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Good to know: food-legal info ===== -->
+  <section class="section info-section">
+    <div class="container">
+      <h2>Good to know</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Ingredients</h3>
+          <p>{product.ingredients}</p>
+        </div>
+        <div class="info-card">
+          <h3>Allergens</h3>
+          <p>{product.allergens}</p>
+        </div>
+        <div class="info-card">
+          <h3>Storage</h3>
+          <p>{product.storage}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== You might also like ===== -->
+  {otherProducts.length > 0 && (
+    <section class="section related-section">
+      <div class="container">
+        <h2>You might also like</h2>
+        <div class="related-grid">
+          {otherProducts.map((p) => (
+            <ProductCard product={p} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  /* ===== Product hero ===== */
+  .hero-grid {
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  @media (min-width: 768px) {
+    .hero-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .product-img {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    border-radius: var(--radius-img);
+    object-fit: cover;
+  }
+
+  /* info column spacing */
+  .info-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .product-desc {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  /* Sizes */
+  .sizes-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .size-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+  }
+
+  .size-label {
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+
+  .size-price {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--color-primary-dark);
+  }
+
+  /* Vegan badge */
+  .vegan-badge {
+    display: inline-block;
+    padding: var(--space-1) var(--space-4);
+    border-radius: var(--radius-pill);
+    background: var(--color-soft);
+    color: var(--color-primary-dark);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    width: fit-content;
+  }
+
+  /* CTA row */
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+  }
+
+  /* ===== Good to know ===== */
+  .info-section {
+    background: var(--color-surface);
+  }
+
+  .info-section h2 {
+    margin-bottom: var(--space-6);
+  }
+
+  .info-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 600px) {
+    .info-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .info-card {
+    padding: var(--space-5);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-bg);
+  }
+
+  .info-card h3 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-primary-dark);
+    margin-bottom: var(--space-3);
+  }
+
+  .info-card p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* ===== You might also like ===== */
+  .related-section h2 {
+    margin-bottom: var(--space-6);
+  }
+
+  .related-grid {
+    display: grid;
+    gap: var(--space-5);
+    max-width: 420px;
+  }
+</style>
