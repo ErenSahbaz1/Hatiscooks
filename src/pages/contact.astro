@@ -1,0 +1,556 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, whatsappLink } from '../data/site';
+import { products } from '../data/products';
+
+const waOrderLink = whatsappLink("Hi! I'd like to place an order.");
+---
+
+<BaseLayout
+  title="Contact & order — hatiscooks"
+  description="How to order homemade gingershots and granola from hatiscooks — WhatsApp, Instagram DM, or email."
+>
+
+  <!-- ======================== 1. INTRO + ORDER STEPS ======================== -->
+  <section class="section">
+    <div class="container intro-wrap">
+      <span class="kicker">Contact</span>
+      <h1>Let&rsquo;s get you sorted</h1>
+
+      <!-- Numbered order steps — CSS counter, no emoji -->
+      <ol class="steps" aria-label="How to order">
+        <li class="step">
+          <span class="step-num" aria-hidden="true"></span>
+          <div class="step-body">
+            <strong>Pick your products</strong>
+            <p>Browse the gingershots and granola — or ask about a custom quantity.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true"></span>
+          <div class="step-body">
+            <strong>Send a message via WhatsApp or Instagram&nbsp;DM</strong>
+            <p>Tell me what you&rsquo;d like and I&rsquo;ll confirm availability &amp; price.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true"></span>
+          <div class="step-body">
+            <strong>Pick up in [PLACEHOLDER: location] or delivery in [PLACEHOLDER: area]</strong>
+            <p>We&rsquo;ll agree on a handoff time that works for both of us.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ======================== 2. CONTACT OPTION CARDS ======================== -->
+  <section class="section section--soft">
+    <div class="container">
+      <span class="kicker">Reach me</span>
+      <h2>Choose how to get in touch</h2>
+
+      <div class="contact-cards">
+
+        <!-- WhatsApp card -->
+        <a
+          class="contact-card"
+          href={waOrderLink}
+          rel="noopener noreferrer"
+          aria-label="Message hatiscooks on WhatsApp to place an order"
+        >
+          <span class="card-icon" aria-hidden="true">
+            <!-- WhatsApp icon — stroke currentColor -->
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M14 2.333C7.557 2.333 2.333 7.557 2.333 14c0 2.045.532 3.965 1.463 5.633L2.333 25.667l6.197-1.441A11.578 11.578 0 0 0 14 25.667c6.443 0 11.667-5.224 11.667-11.667S20.443 2.333 14 2.333Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+              <path d="M10.15 9.333c.233 0 .467.117.584.35l1.283 2.334a.7.7 0 0 1-.117.816l-.817.817c.583 1.05 1.517 1.983 2.567 2.567l.817-.817a.7.7 0 0 1 .816-.117l2.334 1.283c.233.117.35.35.35.584v2.1c0 .7-.583 1.283-1.284 1.167-5.483-.934-9.333-5.717-8.4-11.2.117-.7.817-1.167 1.517-1.167h.35Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="card-label">WhatsApp</span>
+          <span class="card-desc">Fastest way to order — I reply the same day</span>
+          <span class="card-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <!-- Instagram DM card -->
+        <a
+          class="contact-card"
+          href={site.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Send hatiscooks a DM on Instagram"
+        >
+          <span class="card-icon" aria-hidden="true">
+            <!-- Instagram icon — stroke currentColor -->
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="3.5" y="3.5" width="21" height="21" rx="6" stroke="currentColor" stroke-width="1.75"/>
+              <circle cx="14" cy="14" r="5.25" stroke="currentColor" stroke-width="1.75"/>
+              <circle cx="20.125" cy="7.875" r="1.167" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="card-label">Instagram DM</span>
+          <span class="card-desc">Slide into my DMs — @hatiscooks</span>
+          <span class="card-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <!-- Email card -->
+        <a
+          class="contact-card"
+          href={`mailto:${site.email}`}
+          aria-label={`Email hatiscooks at ${site.email}`}
+        >
+          <span class="card-icon" aria-hidden="true">
+            <!-- Email icon — stroke currentColor -->
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="3.5" y="6.417" width="21" height="15.167" rx="3" stroke="currentColor" stroke-width="1.75"/>
+              <path d="M3.5 10.5l10.5 7 10.5-7" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="card-label">Email</span>
+          <span class="card-desc">For longer questions or bulk orders</span>
+          <span class="card-arrow" aria-hidden="true">→</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== 3. FORM ======================== -->
+  <section class="section">
+    <div class="container form-wrap">
+      <span class="kicker">Order form</span>
+      <h2>Prefer a form? No problem</h2>
+      <p class="form-intro">Fill this in and I&rsquo;ll open WhatsApp with your message already written.</p>
+
+      <!--
+        data-whatsapp is rendered server-side so the inline script can read it
+        without importing JS modules (static Astro page — no client bundle).
+      -->
+      <form
+        id="order-form"
+        class="order-form"
+        novalidate
+        data-whatsapp={site.whatsapp}
+      >
+
+        <!-- Name -->
+        <div class="field">
+          <label class="field-label" for="f-name">
+            Your name <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input
+            class="field-input"
+            id="f-name"
+            type="text"
+            name="name"
+            autocomplete="name"
+            required
+            aria-required="true"
+            placeholder="e.g. Sara"
+          />
+        </div>
+
+        <!-- Contact handle / phone -->
+        <div class="field">
+          <label class="field-label" for="f-contact">
+            Your phone or Instagram handle <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input
+            class="field-input"
+            id="f-contact"
+            type="text"
+            name="contact"
+            autocomplete="tel"
+            required
+            aria-required="true"
+            placeholder="e.g. +32 470 … or @yourhandle"
+          />
+          <span class="field-hint">Phone or Instagram handle, so I can reply</span>
+        </div>
+
+        <!-- Product dropdown — populated from products array -->
+        <div class="field">
+          <label class="field-label" for="f-product">
+            What would you like? <span class="required" aria-hidden="true">*</span>
+          </label>
+          <!--
+            Astro island note: this is a plain <select>; no client:* directive
+            needed because no reactivity is required — just a native form field.
+          -->
+          <select
+            class="field-input field-select"
+            id="f-product"
+            name="product"
+            required
+            aria-required="true"
+          >
+            <option value="" disabled selected>Choose a product…</option>
+            {products.map((p) => (
+              <option value={p.name}>{p.name}</option>
+            ))}
+            <option value="Something else">Something else</option>
+          </select>
+        </div>
+
+        <!-- Message / extra info -->
+        <div class="field">
+          <label class="field-label" for="f-message">
+            Any extra info or questions
+          </label>
+          <textarea
+            class="field-input field-textarea"
+            id="f-message"
+            name="message"
+            rows="4"
+            placeholder="Quantities, delivery preference, special requests…"
+          ></textarea>
+        </div>
+
+        <!-- Submit -->
+        <div class="field field--submit">
+          <button class="btn" type="submit">Open WhatsApp with my order</button>
+          <p class="honest-note">
+            This opens WhatsApp with your message prefilled — nothing is sent until you press send there.
+          </p>
+        </div>
+
+        <!-- Fallback for users without JS -->
+        <noscript>
+          <p class="noscript-note">
+            JavaScript is disabled — please use the <a href={waOrderLink}>WhatsApp card above</a> to send your order directly.
+          </p>
+        </noscript>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- ======================== 4. PICKUP / DELIVERY INFO ======================== -->
+  <section class="section section--soft">
+    <div class="container delivery-wrap">
+      <h2>Pickup &amp; delivery</h2>
+      <p>
+        Pickup in <strong>[PLACEHOLDER: location]</strong>, delivery in <strong>[PLACEHOLDER: area]</strong>.
+        Payment: <strong>[PLACEHOLDER: cash / Payconiq / bank transfer]</strong>.
+      </p>
+      <a class="faq-link" href="/faq">More questions? Read the FAQ →</a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<!-- ======================== INLINE SCRIPT — WhatsApp form handler ======================== -->
+<!--
+  Astro island note: this is a plain vanilla <script> tag, NOT an Astro island.
+  It has no client:* directive and no framework dependency — it runs as a
+  classic browser script after the page loads.
+-->
+<script>
+  const form = document.getElementById('order-form') as HTMLFormElement | null;
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const data = new FormData(form);
+      const name    = (data.get('name')    as string | null)?.trim() ?? '';
+      const contact = (data.get('contact') as string | null)?.trim() ?? '';
+      const product = (data.get('product') as string | null)?.trim() ?? '';
+      const message = (data.get('message') as string | null)?.trim() ?? '';
+
+      // Read the WhatsApp number from a data-attribute so we never hard-code it
+      const number = form.dataset.whatsapp ?? '00000000000';
+
+      const lines = [
+        `Hi! I'd like to place an order.`,
+        `Name: ${name}`,
+        `Contact: ${contact}`,
+        `Product: ${product}`,
+      ];
+      if (message) lines.push(`Message: ${message}`);
+
+      const text = lines.join('\n');
+      window.open(
+        `https://wa.me/${number}?text=${encodeURIComponent(text)}`,
+        '_blank',
+        'noopener,noreferrer'
+      );
+    });
+  }
+</script>
+
+<style>
+  /* ======================== INTRO + STEPS ======================== */
+  .intro-wrap h1 {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+    counter-reset: step-counter;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: 600px;
+  }
+
+  .step {
+    counter-increment: step-counter;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  /* Inline SVG-style step number rendered with CSS counter */
+  .step-num {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 36×36 circle */
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-surface);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1;
+    /* Render the counter value as content */
+    content: counter(step-counter);
+  }
+
+  /* ::before trick: the <span> itself can't have content via counter in all
+     cases, so we use an ::before pseudo on it */
+  .step-num::before {
+    content: counter(step-counter);
+  }
+
+  .step-body strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text);
+    margin-bottom: var(--space-1);
+  }
+
+  .step-body p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  @media (min-width: 768px) {
+    .steps {
+      gap: var(--space-6);
+    }
+
+    .step-num {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+
+    .step-body strong {
+      font-size: 1.1rem;
+    }
+  }
+
+  /* ======================== CONTACT CARDS ======================== */
+  .section--soft {
+    background: var(--color-soft);
+  }
+
+  .contact-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+  }
+
+  @media (min-width: 600px) {
+    .contact-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    text-decoration: none;
+    color: var(--color-text);
+    /* Min 44px touch target is satisfied by padding; card is naturally taller */
+    min-height: 44px;
+    transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+    position: relative;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+  }
+
+  .card-icon {
+    color: var(--color-primary-dark);
+    display: flex;
+  }
+
+  .card-label {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-text);
+  }
+
+  .card-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .card-arrow {
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    font-weight: 700;
+    align-self: flex-end;
+  }
+
+  /* ======================== FORM ======================== */
+  .form-wrap {
+    max-width: 680px;
+  }
+
+  .form-wrap h2 {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+
+  .form-intro {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .order-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .field-label {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+
+  .required {
+    color: var(--color-pop);
+    margin-left: 2px;
+  }
+
+  .field-input {
+    /* 16px prevents iOS from auto-zooming on focus */
+    font-size: 1rem;
+    font-family: var(--font-body);
+    min-height: 44px;
+    padding: var(--space-3) var(--space-4);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    color: var(--color-text);
+    width: 100%;
+    transition: border-color 200ms ease-out, box-shadow 200ms ease-out;
+    /* Ensure consistent appearance across browsers */
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(252, 100, 187, 0.15);
+  }
+
+  .field-select {
+    /* Custom arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%23d84a9e' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-4) center;
+    padding-right: var(--space-7);
+    cursor: pointer;
+  }
+
+  .field-textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+
+  .field-hint {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .field--submit {
+    gap: var(--space-3);
+  }
+
+  .honest-note {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    max-width: 48ch;
+  }
+
+  .noscript-note {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    padding: var(--space-4);
+    background: var(--color-soft);
+    border-radius: var(--radius-card);
+  }
+
+  /* ======================== PICKUP / DELIVERY ======================== */
+  .delivery-wrap h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .delivery-wrap p {
+    max-width: 56ch;
+    color: var(--color-text);
+    line-height: 1.7;
+  }
+
+  .faq-link {
+    display: inline-block;
+    margin-top: var(--space-5);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    text-decoration: none;
+  }
+
+  .faq-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ======================== RESPONSIVE tweaks ======================== */
+  @media (min-width: 768px) {
+    .form-wrap h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
