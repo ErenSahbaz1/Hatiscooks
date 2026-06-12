@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// CSS-only confetti: a fixed set of pieces with varied positions/delays.
+const confetti = Array.from({ length: 18 }, (_, i) => ({
+  left: `${(i * 53) % 100}%`,
+  delay: `${(i % 9) * 0.35}s`,
+  duration: `${2.6 + (i % 5) * 0.5}s`,
+}));
+---
+
+<BaseLayout
+  title="Happy birthday! — hatiscooks"
+  description="A little surprise for the chef behind hatiscooks."
+>
+  <section class="section bday">
+    <div class="confetti" aria-hidden="true">
+      {confetti.map((c, i) => (
+        <span
+          class={`piece piece-${i % 3}`}
+          style={`left: ${c.left}; animation-delay: ${c.delay}; animation-duration: ${c.duration};`}
+        ></span>
+      ))}
+    </div>
+    <div class="container bday-inner">
+      <span class="kicker">Surprise!</span>
+      <h1>Happy birthday, Hati <span aria-hidden="true">🎂</span></h1>
+      <p>
+        This whole website is your present — every page, every pink pixel.
+        Now go fill it with your food and make it yours.
+      </p>
+      <p class="bday-sign">Made with <span class="bday-heart" aria-hidden="true">♥</span><span class="sr-only">love</span> by Eren Doesn'tcooks</p>
+      <a class="btn" href="/">See your website</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .bday {
+    position: relative;
+    overflow: hidden;
+    min-height: 70vh;
+    display: grid;
+    align-items: center;
+  }
+
+  .bday-inner {
+    text-align: center;
+    max-width: 40rem;
+  }
+
+  .bday-inner p {
+    margin-top: var(--space-4);
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+  }
+
+  .bday-sign {
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
+
+  /* the one allowed pop-red accent on this screen */
+  .bday-heart {
+    color: var(--color-pop);
+  }
+
+  .bday-inner .btn {
+    margin-top: var(--space-6);
+  }
+
+  .confetti {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .piece {
+    position: absolute;
+    top: -24px;
+    width: 10px;
+    height: 14px;
+    border-radius: 3px;
+    animation-name: confetti-fall;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+  }
+
+  .piece-0 { background: var(--color-primary); }
+  .piece-1 { background: var(--color-soft); }
+  .piece-2 { background: var(--color-primary-dark); }
+
+  @keyframes confetti-fall {
+    to {
+      transform: translateY(110vh) rotate(540deg);
+    }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+</style>
