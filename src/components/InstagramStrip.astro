@@ -1,8 +1,12 @@
 ---
 import { site } from '../data/site';
 
-// [PLACEHOLDER: 4 recent food photos exported from her Instagram, 1:1]
-const photoCount = 4;
+const photos = [
+  { src: '/meze.jpg', alt: 'Beet meze on whipped yogurt, plated by Hati' },
+  { src: '/shot1.jpg', alt: 'Heart-shaped glass with fresh gingershot' },
+  { src: '/granola3.jpg', alt: 'Homemade chocolate granola' },
+  { src: '/hatis.jpg', alt: 'Hati cooking in the kitchen' },
+];
 ---
 
 <section class="section">
@@ -13,10 +17,10 @@ const photoCount = 4;
   <!-- photo strip breaks out of the main column for a full-bleed feel -->
   <div class="container container--wide">
     <ul class="ig-grid">
-      {Array.from({ length: photoCount }).map(() => (
+      {photos.map((photo) => (
         <li>
           <a href={site.instagram} rel="noopener" aria-label={`See more on Instagram, @${site.name}`}>
-            <div class="ig-photo img-placeholder" aria-hidden="true"></div>
+            <img class="ig-photo" src={photo.src} alt={photo.alt} width="600" height="600" loading="lazy" />
           </a>
         </li>
       ))}
@@ -40,6 +44,9 @@ const photoCount = 4;
 
   .ig-photo {
     aspect-ratio: 1 / 1;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-img);
     transition: transform 200ms ease-out;
   }
 
