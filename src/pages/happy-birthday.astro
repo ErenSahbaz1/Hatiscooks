@@ -17,6 +17,13 @@ const roles = [
   "Marmaray'da klarnet çalan çocuk",
 ];
 
+// Memories: drop photos in /public and add a line here — add/remove freely.
+// caption is optional (shows under the photo, polaroid-style).
+const memories: { src: string; alt: string; caption?: string }[] = [
+  { src: '/hatis.jpg', alt: 'Hati cooking', caption: '[PLACEHOLDER: caption — where/when was this?]' },
+  { src: '/meze.jpg', alt: 'One of her dishes', caption: '[PLACEHOLDER: caption]' },
+];
+
 // Things she always says — fill these in.
 const quotes = [
   'AAAAAAAAAAAABI NETWORK YAPIN NETWORK!!!',
@@ -54,6 +61,22 @@ const quotes = [
           <li class="role-pill">{role}</li>
         ))}
       </ul>
+
+      {memories.length > 0 && (
+        <>
+          <p class="roles-lead">Some memories…</p>
+          <ul class="memories">
+            {memories.map((m) => (
+              <li class="memory">
+                <figure>
+                  <img src={m.src} alt={m.alt} width="600" height="600" loading="lazy" />
+                  {m.caption && <figcaption>{m.caption}</figcaption>}
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
 
       <ul class="quotes">
         {quotes.map((quote) => (
@@ -121,6 +144,49 @@ const quotes = [
     font-family: var(--font-heading);
     font-weight: 600;
     font-size: 0.9rem;
+  }
+
+  .memories {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-5);
+  }
+
+  /* polaroid look: white frame, caption below, alternating tilt */
+  .memory figure {
+    margin: 0;
+    background: var(--color-surface);
+    padding: var(--space-3) var(--space-3) var(--space-4);
+    border-radius: 6px;
+    box-shadow: var(--shadow-soft);
+    transform: rotate(-2deg);
+    transition: transform 200ms ease-out;
+  }
+
+  .memory:nth-child(even) figure {
+    transform: rotate(2deg);
+  }
+
+  .memory figure:hover {
+    transform: rotate(0deg) scale(1.03);
+  }
+
+  .memory img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .memory figcaption {
+    margin-top: var(--space-2);
+    max-width: 180px;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
   }
 
   .quotes {
