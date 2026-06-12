@@ -124,7 +124,12 @@ const quotes = [
       // remove from the DOM once the slide finishes (or instantly with reduced motion)
       const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reduced) curtains.remove();
-      else curtains.addEventListener('transitionend', () => curtains.remove(), { once: true });
+      else
+        curtains.addEventListener('transitionend', (e) => {
+          // the text's opacity fade also fires transitionend — only the
+          // panels' transform marks the end of the reveal
+          if (e.propertyName === 'transform') curtains.remove();
+        });
     },
     { once: true },
   );
@@ -155,7 +160,9 @@ const quotes = [
       var(--color-primary) 0 36px,
       var(--color-primary-dark) 36px 72px
     );
-    transition: transform 1400ms ease-in-out;
+    /* slow start, long glide: text fades first (300ms delay), then panels part */
+    transition: transform 2600ms cubic-bezier(0.45, 0, 0.15, 1) 300ms;
+    will-change: transform;
   }
 
   .curtain-left { left: 0; }
@@ -173,7 +180,7 @@ const quotes = [
     color: var(--color-surface);
     /* keeps white text readable on the lighter pink stripes */
     text-shadow: 0 1px 14px rgba(45, 27, 37, 0.55);
-    transition: opacity 400ms ease-out;
+    transition: opacity 350ms ease-out;
   }
 
   .curtains.is-open .curtain-text {
