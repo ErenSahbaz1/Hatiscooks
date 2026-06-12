@@ -1,0 +1,104 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="section">
+  <div class="container">
+    <div class="summer-card">
+      <div class="summer-copy">
+        <span class="kicker">This summer</span>
+        <h2>Find me at [PLACEHOLDER: bar name] this August</h2>
+        <p class="summer-date">
+          <span class="date-dot" aria-hidden="true"></span>
+          August 2026
+        </p>
+        <p>
+          I'll be behind the stove at a summer bar all month — come say hi and
+          taste what I'm cooking. Details soon on Instagram.
+        </p>
+        <a class="btn" href={site.instagram} rel="noopener">Follow for updates</a>
+      </div>
+      <!-- [PLACEHOLDER: summer bar photo, 1:1] -->
+      <div class="summer-media-wrap blob-wrap">
+        <div class="summer-media img-placeholder" role="img" aria-label="Summer bar photo coming soon"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .summer-card {
+    background: var(--color-soft);
+    border-radius: var(--radius-banner);
+    padding: var(--space-6) var(--space-5);
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .summer-copy h2 {
+    max-width: 22ch;
+  }
+
+  /* date pill: white surface separates the red accent from the pink card
+     (DESIGN.md: red and primary pink never directly together) */
+  .summer-date {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+    padding: var(--space-1) var(--space-4);
+    background: var(--color-surface);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  /* the page's single allowed pop-red accent */
+  .date-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-pill);
+    background: var(--color-pop);
+  }
+
+  .summer-copy p:not(.summer-date) {
+    margin-top: var(--space-4);
+    max-width: 50ch;
+  }
+
+  .summer-copy .btn {
+    margin-top: var(--space-5);
+  }
+
+  .summer-media-wrap {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  /* blob leans differently than hero/teaser for variety */
+  .summer-media-wrap::before {
+    transform: rotate(-12deg);
+    background: var(--color-surface);
+    opacity: 0.6;
+  }
+
+  .summer-media {
+    aspect-ratio: 1 / 1;
+    transform: rotate(2deg);
+    background: var(--color-surface);
+  }
+
+  @media (min-width: 768px) {
+    .summer-card {
+      grid-template-columns: 1.3fr 1fr;
+      align-items: center;
+      padding: var(--space-8);
+      gap: var(--space-8);
+    }
+
+    .summer-media-wrap {
+      justify-self: end;
+    }
+  }
+</style>

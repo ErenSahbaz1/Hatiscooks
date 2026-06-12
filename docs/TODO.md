@@ -29,6 +29,7 @@ Claude: work top-to-bottom, check off (`[x]`) what's done, don't jump ahead.
       (`site:` is set to hatiscooks.vercel.app — update if the deploy URL differs)
 
 ## Later (after her input)
+- [ ] Summer bar section: fill in bar name + photo; remove from home in September
 - [ ] Real testimonials with permission
 - [ ] NL/EN toggle (if needed)
 - [ ] Recipes/blog section (Astro content collections — good learning project)
