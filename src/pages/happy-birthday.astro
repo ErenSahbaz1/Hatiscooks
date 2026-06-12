@@ -7,6 +7,21 @@ const confetti = Array.from({ length: 18 }, (_, i) => ({
   delay: `${(i % 9) * 0.35}s`,
   duration: `${2.6 + (i % 5) * 0.5}s`,
 }));
+
+// Edit these freely — plain text, shows as pink pills.
+const roles = [
+  'the best cousin',
+  '[PLACEHOLDER: mentor / chef / role 2]',
+  '[PLACEHOLDER: role 3]',
+  '[PLACEHOLDER: role 4]',
+];
+
+// Things she always says — fill these in.
+const quotes = [
+  '[PLACEHOLDER: something she always says 1]',
+  '[PLACEHOLDER: something she always says 2]',
+  '[PLACEHOLDER: something she always says 3]',
+];
 ---
 
 <BaseLayout
@@ -29,6 +44,22 @@ const confetti = Array.from({ length: 18 }, (_, i) => ({
         This whole website is your present — every page, every pink pixel.
         Now go fill it with your food and make it yours.
       </p>
+      <p class="roles-lead">You are…</p>
+      <ul class="roles">
+        {roles.map((role) => (
+          <li class="role-pill">{role}</li>
+        ))}
+      </ul>
+
+      <ul class="quotes">
+        {quotes.map((quote) => (
+          <li class="quote-card">
+            <blockquote><p>“{quote}”</p></blockquote>
+            <p class="quote-by">— Hati, probably right now</p>
+          </li>
+        ))}
+      </ul>
+
       <p class="bday-sign">Made with <span class="bday-heart" aria-hidden="true">♥</span><span class="sr-only">love</span> by Eren Doesn'tcooks</p>
       <a class="btn" href="/">See your website</a>
     </div>
@@ -55,7 +86,61 @@ const confetti = Array.from({ length: 18 }, (_, i) => ({
     font-size: 1.1rem;
   }
 
+  .roles-lead {
+    margin-top: var(--space-6);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .roles {
+    list-style: none;
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .role-pill {
+    padding: var(--space-1) var(--space-4);
+    background: var(--color-soft);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .quotes {
+    list-style: none;
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+    text-align: left;
+  }
+
+  .quote-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .quote-card blockquote {
+    margin: 0;
+    font-style: italic;
+  }
+
+  .quote-by {
+    margin-top: var(--space-2);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
   .bday-sign {
+    margin-top: var(--space-6);
     font-family: var(--font-heading);
     font-weight: 600;
   }
