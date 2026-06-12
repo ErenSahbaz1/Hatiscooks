@@ -34,5 +34,7 @@ Claude: work top-to-bottom, check off (`[x]`) what's done, don't jump ahead.
 - [ ] NL/EN toggle (if needed)
 - [ ] Recipes/blog section (Astro content collections — good learning project)
 - [ ] Custom domain (hatiscooks.be / .com)
+- [ ] Get high-res/vector version of the logo (current logo.png is low-res,
+      only usable small — footer + birthday page)
 - [ ] Order form v2 or lightweight webshop (Snipcart/Stripe Payment Links)
 - [ ] Re-check all ingredient/allergen info with her before "launch"

@@ -40,6 +40,7 @@ const quotes = [
       ))}
     </div>
     <div class="container bday-inner">
+      <img class="bday-logo" src="/logo.png" alt="hatiscooks" width="700" height="479" />
       <span class="kicker">Surprise!</span>
       <h1>Happy birthday, Hatissss <span aria-hidden="true">🎂</span></h1>
       <p>
@@ -81,6 +82,13 @@ const quotes = [
   .bday-inner {
     text-align: center;
     max-width: 40rem;
+  }
+
+  /* low-res source — keep small so the soft edges don't show */
+  .bday-logo {
+    width: 160px;
+    height: auto;
+    margin: 0 auto var(--space-4);
   }
 
   .bday-inner p {

@@ -6,7 +6,7 @@ const year = new Date().getFullYear();
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <p class="footer-brand">{site.name}</p>
+    <img class="footer-logo" src="/logo.png" alt={site.name} width="700" height="479" loading="lazy" />
     <ul class="footer-links">
       <li><a href={site.instagram} rel="noopener">Instagram</a></li>
       <li><a href="/contact">Contact</a></li>
@@ -30,10 +30,11 @@ const year = new Date().getFullYear();
     text-align: center;
   }
 
-  .footer-brand {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.15rem;
+  /* low-res source — keep small so the soft edges don't show */
+  .footer-logo {
+    width: 140px;
+    height: auto;
+    margin-inline: auto;
   }
 
   .footer-links {
