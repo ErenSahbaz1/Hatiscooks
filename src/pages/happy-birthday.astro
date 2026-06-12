@@ -20,14 +20,14 @@ const roles = [
 // Memories: drop photos in /public and add a line here — add/remove freely.
 // caption is optional (shows under the photo, polaroid-style).
 const memories: { src: string; alt: string; caption?: string }[] = [
-  { src: '/memory1.jpg', alt: 'Memory with Hati', caption: '[PLACEHOLDER: caption]' },
-  { src: '/memory2.jpg', alt: 'Memory with Hati', caption: '[PLACEHOLDER: caption]' },
-  { src: '/memory3.jpg', alt: 'Memory with Hati', caption: '[PLACEHOLDER: caption]' },
-  { src: '/memory4.jpg', alt: 'Memory with Hati', caption: '[PLACEHOLDER: caption]' },
-  { src: '/memory5.jpg', alt: 'Memory with Hati', caption: '[PLACEHOLDER: caption]' },
-  { src: '/memory6.jpg', alt: 'Memory with Hati', caption: '[PLACEHOLDER: caption]' },
-  { src: '/memory7.jpg', alt: 'Memory with Hati', caption: '[PLACEHOLDER: caption]' },
-  { src: '/memory8.jpg', alt: 'Memory with Hati', caption: '[PLACEHOLDER: caption]' },
+  { src: '/memory1.jpg', alt: 'Memory with Hati', caption: 'EN güçlümüz' },
+  { src: '/memory2.jpg', alt: 'Memory with Hati', caption: 'Efeyle' },
+  { src: '/memory3.jpg', alt: 'Memory with Hati', caption: '2 güzel' },
+  { src: '/memory4.jpg', alt: 'Memory with Hati', caption: 'My teacher' },
+  { src: '/memory5.jpg', alt: 'Memory with Hati', caption: 'My coach' },
+  { src: '/memory6.jpg', alt: 'Memory with Hati', caption: 'My coach, yaninda da kadir' },
+  { src: '/memory7.jpg', alt: 'Memory with Hati', caption: 'Halam ve resmi' },
+  { src: '/memory8.jpg', alt: 'Memory with Hati', caption: 'Hatiscooks ve halam' },
 ];
 
 // Things she always says — fill these in.
@@ -43,6 +43,21 @@ const quotes = [
   title="Happy birthday! — hatiscooks"
   description="A little surprise for the chef behind hatiscooks."
 >
+  <!-- Curtain reveal: one big button so tap/click/Enter all open it. -->
+  <button class="curtains" type="button" aria-label="Open the curtains to see your surprise">
+    <span class="curtain-panel curtain-left" aria-hidden="true"></span>
+    <span class="curtain-panel curtain-right" aria-hidden="true"></span>
+    <span class="curtain-text">
+      <span class="curtain-title">This is for you, Hatis <span class="bday-heart">♥</span></span>
+      <span class="curtain-hint">tap to open</span>
+    </span>
+  </button>
+  <noscript>
+    <style>
+      .curtains { display: none; }
+    </style>
+  </noscript>
+
   <section class="section bday">
     <div class="confetti" aria-hidden="true">
       {confetti.map((c, i) => (
@@ -99,7 +114,103 @@ const quotes = [
   </section>
 </BaseLayout>
 
+<script>
+  const curtains = document.querySelector<HTMLButtonElement>('.curtains');
+  curtains?.addEventListener(
+    'click',
+    () => {
+      curtains.classList.add('is-open');
+      curtains.style.pointerEvents = 'none';
+      // remove from the DOM once the slide finishes (or instantly with reduced motion)
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) curtains.remove();
+      else curtains.addEventListener('transitionend', () => curtains.remove(), { once: true });
+    },
+    { once: true },
+  );
+</script>
+
 <style>
+  /* ===== Curtain reveal ===== */
+  .curtains {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+  }
+
+  .curtain-panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 51%; /* tiny overlap so no seam shows in the middle */
+    /* velvet folds from the two brand pinks */
+    background: repeating-linear-gradient(
+      90deg,
+      var(--color-primary) 0 36px,
+      var(--color-primary-dark) 36px 72px
+    );
+    transition: transform 1400ms ease-in-out;
+  }
+
+  .curtain-left { left: 0; }
+  .curtain-right { right: 0; }
+
+  .curtains.is-open .curtain-left { transform: translateX(-101%); }
+  .curtains.is-open .curtain-right { transform: translateX(101%); }
+
+  .curtain-text {
+    position: relative;
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    text-align: center;
+    color: var(--color-surface);
+    transition: opacity 400ms ease-out;
+  }
+
+  .curtains.is-open .curtain-text {
+    opacity: 0;
+  }
+
+  .curtain-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-wrap: balance;
+  }
+
+  .curtain-title .bday-heart {
+    color: var(--color-surface);
+  }
+
+  .curtain-hint {
+    font-size: 1rem;
+    opacity: 0.85;
+    animation: hint-pulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes hint-pulse {
+    50% { opacity: 0.45; }
+  }
+
+  @media (min-width: 768px) {
+    .curtain-title { font-size: 2.6rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .curtain-panel,
+    .curtain-text {
+      transition: none;
+    }
+  }
+
+  /* ===== Page ===== */
   .bday {
     position: relative;
     overflow: hidden;
